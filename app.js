@@ -5,62 +5,65 @@ const app = express();
 const { ENVIRONMENT, PORT } = process.env;
 const IS_DEVELOPMENT = ENVIRONMENT === "development";
 
-// middleware
+// middleware
 app.use(express.json());
 
 const db = {
-  posts: [
+  brands: [
     {
       id: 1,
-      title: "Post 1",
-      body: "something here..."
+      brand: "BUHO",
+      body:
+        "BUHO is the first sustainable e-commerce site with products for everyone. Shop environmentally sustainable fashion, ethically made, vegan or vintage brands."
     },
     {
       id: 2,
-      title: "Post 2",
-      body: "something else here..."
+      brand: "For Days",
+      body:
+        "We are the original closed loop clothing company. We are on a mission to make zero-waste available to everyone. We exist for You. For Us. For the Planet."
     },
     {
       id: 3,
-      title: "Post 3",
-      body: "something else here..."
+      brand: "Everlane",
+      body:
+        "Timeless Pieces Made with High Quality Materials Designed to Last for Years. Ethical factories. Transparent pricing. Exceptional quality. Grade-A cashmere. Types: A-Grade Cashmere, Luxe Alpaca, Soft Cotton, Italian Merino, Luxe Wool."
     }
   ]
 };
 
-app.get("/api/posts", (request, response) => {
-  response.json(db.posts);
+app.get("/api/brands", (request, response) => {
+  response.json(db.brands);
 });
 
-app.post("/api/posts", (request, response) => {
-  const post = request.body;
-  post.id = db.posts.length + 1;
-  db.posts.push(post);
-  response.json(post);
+app.brand("/api/brands", (request, response) => {
+  const brand = request.body;
+  brand.id = db.brands.length + 1;
+  db.brands.push(brand);
+  response.json(brand);
 });
 
-app.get("/api/posts/:id", (request, response) => {
+app.get("/api/brands/:id", (request, response) => {
   const id = Number(request.params.id);
-  const post = db.posts.find(post => {
-    return post.id === id;
+  const brand = db.brands.find(brand => {
+    return brand.id === id;
   });
 
-  if (post) {
-    response.json(post);
+  if (brand) {
+    response.json(brand);
   } else {
     response.status(404).send();
   }
 });
 
-app.delete("/api/posts/:id", (request, response) => {
+app.delete("/api/brands/:id", (request, response) => {
   const id = Number(request.params.id);
-  const post = db.posts.find(post => {
-    return post.id === id;
+  const brand = db.brands.find(brand => {
+    return brand.id === id;
   });
 
-  if (post) {
-    db.posts = db.posts.filter(post => {
-      return post.id !== id;
+  if (brand) {
+    db.brands = db.brands.filter(brand => {
+      return brand.id !== id;
     });
     response.status(204).send();
   } else {
@@ -68,15 +71,15 @@ app.delete("/api/posts/:id", (request, response) => {
   }
 });
 
-app.put("/api/posts/:id", (request, response) => {
+app.put("/api/brands/:id", (request, response) => {
   const id = Number(request.params.id);
-  const post = db.posts.find(post => {
-    return post.id === id;
+  const brand = db.brands.find(brand => {
+    return brand.id === id;
   });
 
-  if (post) {
-    Object.assign(post, request.body);
-    response.json(post);
+  if (brand) {
+    Object.assign(brand, request.body);
+    response.json(brand);
   } else {
     response.status(404).send();
   }
