@@ -93,4 +93,4 @@ app.put("/api/brands/:id", (request, response) => {
   }
 });
 
-app.listen(process.env.PORT || 8000);
+app.listen(PORT || 8000);
