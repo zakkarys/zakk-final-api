@@ -7,13 +7,13 @@ const IS_DEVELOPMENT = ENVIRONMENT === "development";
 
 // middleware
 app.use(express.json());
-// app.use(
-//   cors({
-//     origin: IS_DEVELOPMENT
-//       ? "http://localhost:3000"
-//       : "https://dtang-react-crud.surge.sh"
-//   })
-// );
+app.use(
+  cors({
+    origin: IS_DEVELOPMENT
+      ? "http://localhost:3000"
+      // : "https://dtang-react-crud.surge.sh"
+  })
+);
 
 const db = {
   brands: [
