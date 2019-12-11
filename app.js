@@ -7,11 +7,6 @@ const IS_DEVELOPMENT = ENVIRONMENT === "development";
 
 // middleware
 app.use(express.json());
-app.use(
-  cors({
-    origin: "http://localhost:3000"
-  })
-);
 
 const db = {
   posts: [
