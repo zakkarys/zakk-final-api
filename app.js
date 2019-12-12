@@ -11,7 +11,7 @@ app.use(
   cors({
     origin: IS_DEVELOPMENT
       ? "http://localhost:3000"
-      : "https://windy-plastic.surge.sh"
+      : ["http://zakkarys-final.surge.sh", "https://zakkarys-final.surge.sh"]
   })
 );
 
